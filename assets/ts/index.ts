@@ -8,6 +8,29 @@ class Pokemon{
     peso:number = -999;
 }
 
+const lista_no_html = document.getElementById(`listagem_pokemons`);
+
+function mexer_html(pokemonio:any){
+    const poke_html = pokemonio.map((pokemon_data: { type: any; id: any; name: any; image: any; types: any[] }) => `              
+    <li class="pokemon  ${pokemon_data.type}">
+        <span class="numero">${pokemon_data.id}</span>
+        <span class="nome" id="${pokemon_data.id}" >${pokemon_data.name}</span>
+
+        <div class="detalhes">
+            
+            <ol class="tipos">  
+                ${pokemon_data.types.map((i) => `<li class="tipo ${i}">${i}</li>`).join(``)}
+            </ol>
+
+            <img src="${pokemon_data.image}" alt="">
+
+        </div>
+    </li>
+`).join(``);
+
+return poke_html;
+}
+
 function converter(data: any): Pokemon{
     const pokemon = new Pokemon();
     pokemon.name = data.name;
@@ -39,7 +62,7 @@ async function pegar__detalhes(lista: {url: string}): Promise<Pokemon>{
     return convertido;
 }
 
-async function pegarPokemon(offset:number = 0, limit:number = 20){
+async function pegarPokemon(offset:number = 0, limit:number = 20): Promise<string>{
     const url:string = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
     const response = await fetch(url);
                                                         Checagem__Erro__HTTP(response)
@@ -53,7 +76,13 @@ async function pegarPokemon(offset:number = 0, limit:number = 20){
             return detalhes;
         })
     )
-    console.log(lista_detalhada)
+    const convertido_html = mexer_html(lista_detalhada);
+
+    console.log(convertido_html)
+
+    lista_no_html.innerHTML += convertido_html;
+
+    return convertido_html;
 }
 
-pegarPokemon(0,2)
+pegarPokemon(0,20);
