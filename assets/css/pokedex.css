@@ -63,6 +63,7 @@
 
 
 .pokemon .nome{
+    color: white;
     margin-bottom: 0;
     text-transform: capitalize;
 }
