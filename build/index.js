@@ -21,9 +21,7 @@ class Pokemon {
 }
 const lista_no_html = document.getElementById(`listagem_pokemons`);
 function mexer_html(pokemonio) {
-    const poke_html = pokemonio.map((pokemon_data) => `            
-
-                
+    const poke_html = pokemonio.map((pokemon_data) => `              
     <li class="pokemon  ${pokemon_data.type}">
         <span class="numero">${pokemon_data.id}</span>
         <span class="nome" id="${pokemon_data.id}" >${pokemon_data.name}</span>
@@ -38,7 +36,6 @@ function mexer_html(pokemonio) {
 
         </div>
     </li>
-
 `).join(``);
     return poke_html;
 }
@@ -80,10 +77,9 @@ function pegarPokemon(offset = 0, limit = 20) {
             return detalhes;
         })));
         const convertido_html = mexer_html(lista_detalhada);
-        //exportar este valor para outro arquivo ts
         console.log(convertido_html);
         lista_no_html.innerHTML += convertido_html;
         return convertido_html;
     });
 }
-pegarPokemon(0, 20);
+pegarPokemon(0, 200);

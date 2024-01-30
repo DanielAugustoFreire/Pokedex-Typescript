@@ -2,7 +2,7 @@ class Pokemon{
     name:string = ``;
     id:number = -999;
     image:string = ``;
-    type:string = ``;
+    type:string = ``; 
     types:string[] = [];
     altura:number = -999;
     peso:number = -999;
@@ -80,9 +80,9 @@ async function pegarPokemon(offset:number = 0, limit:number = 20): Promise<strin
 
     console.log(convertido_html)
 
-    lista_no_html.innerHTML += convertido_html;
+    lista_no_html!.innerHTML += convertido_html;
 
     return convertido_html;
 }
 
-pegarPokemon(0,20);
+pegarPokemon(0,200);

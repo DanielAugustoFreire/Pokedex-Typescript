@@ -4,12 +4,12 @@
 }
 
 body{
-    background-color: #f6f8fc;
+    background-color: #5073bb;
 }
 
 .content{
     padding: 1rem;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     height: 100vh;
 }
 
